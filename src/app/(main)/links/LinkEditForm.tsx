@@ -117,9 +117,13 @@ export function LinkEditForm({
                 <TextField
                   value={`${hostUrl}/${slug}`}
                   autoComplete="off"
-                  isReadOnly
                   allowCopy
                   style={{ width: '100%' }}
+                  onChange={value => {
+                    const newSlug = value.replace(`${hostUrl}/`, '');
+                    setSlug(newSlug);
+                    setValue('slug', newSlug, { shouldDirty: true });
+                  }}
                 />
                 <Button
                   variant="quiet"

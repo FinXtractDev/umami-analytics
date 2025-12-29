@@ -101,9 +101,13 @@ export function PixelEditForm({
                 <TextField
                   value={`${hostUrl}/${slug}`}
                   autoComplete="off"
-                  isReadOnly
                   allowCopy
                   style={{ width: '100%' }}
+                  onChange={value => {
+                    const newSlug = value.replace(`${hostUrl}/`, '');
+                    setSlug(newSlug);
+                    setValue('slug', newSlug, { shouldDirty: true });
+                  }}
                 />
                 <Button onPress={() => setValue('slug', handleSlug(), { shouldDirty: true })}>
                   <Icon>
